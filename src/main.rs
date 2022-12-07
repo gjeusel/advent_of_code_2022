@@ -5,25 +5,35 @@ use std::path::Path;
 use std::vec;
 
 fn day1(datapath: &Path) {
-    // let filepath = datapath
+    // https://adventofcode.com/2022/day/1
+
     let filepath = Path::join(datapath, Path::new("day1/input.txt"));
     println!("In file {}", filepath.display());
 
-    let contents = fs::read_to_string(filepath).expect("failed to read day1 input file");
-    println!("With text:\n{contents}");
+    let raw_inventories = fs::read_to_string(filepath).expect("failed to read day1 input file");
 
-    let mut vectors: Vec<Vec<u8>> = vec![];
+    let mut inventories: Vec<Vec<u32>> = vec![vec![]];
 
-    let mut i_vector: usize = 0;
-    for line in contents.split_whitespace() {
-        if line == "\n" {
-            i_vector += 1;
-            println!();
+    let mut i: usize = 0;
+    for line in raw_inventories.split("\n") {
+        if line.is_empty() {
+            i += 1;
+            inventories.push(vec![])
         } else {
-            let n = line.parse::<u8>().expect("Failed to parse line");
-            vectors[i_vector].push(n);
+            let item_calory = line
+                .parse::<u32>()
+                .expect(&format!("Failed to parse line: '{}'", line.to_string()));
+            inventories[i].push(item_calory);
         }
     }
+
+    let mut calory_per_inventory: Vec<u32> = vec![];
+    for inventory in inventories {
+        calory_per_inventory.push(inventory.iter().sum())
+    }
+
+    let max_calories = calory_per_inventory.iter().max().expect("Failed to sum");
+    println!("The calories of the highest inventory is: {}", max_calories)
 }
 
 fn main() {
@@ -33,7 +43,6 @@ fn main() {
         Path::new("data"),
     );
 
-    // println!("main_filepath: {}", main_filepath.display());
-
+    // Day 1 Challenge
     day1(&datapath)
 }
