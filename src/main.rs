@@ -1,3 +1,4 @@
+use clap::Parser;
 use itertools::Itertools;
 use std::collections::HashMap;
 use std::env;
@@ -6,7 +7,6 @@ use std::fs;
 use std::path::Path;
 use std::vec;
 
-#[allow(dead_code)]
 fn day1(datapath: &Path) {
     // https://adventofcode.com/2022/day/1
 
@@ -39,7 +39,6 @@ fn day1(datapath: &Path) {
     println!("The calories of the highest inventory is: {}", max_calories)
 }
 
-#[allow(dead_code)]
 fn day2(datapath: &Path) {
     // https://adventofcode.com/2022/day/2
 
@@ -128,14 +127,26 @@ fn day2(datapath: &Path) {
     }
 }
 
+#[derive(Parser, Debug)]
+#[command(author = "gjeusel", version, about = "Advent of Code baby")]
+struct Args {
+    #[arg(short, long)]
+    day: u8,
+}
+
 fn main() {
+    let args = Args::parse();
+    // dbg!(args);
+
     let main_filepath = Path::join(env::current_dir().unwrap().as_path(), Path::new(file!()));
     let datapath = Path::join(
         main_filepath.parent().unwrap().parent().unwrap(),
         Path::new("data"),
     );
 
-    // day1(&datapath)
-
-    day2(&datapath)
+    match args.day {
+        1 => day1(&datapath),
+        2 => day2(&datapath),
+        _ => println!("Day {} not yet implemented.", args.day),
+    }
 }
