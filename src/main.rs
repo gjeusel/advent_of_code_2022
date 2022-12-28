@@ -1,5 +1,10 @@
+// ________ AOC - Advent Of Code 2022 ________
+//
+// https://adventofcode.com/2022
+
 mod day1;
 mod day2;
+mod day3;
 
 use clap::Parser;
 use std::env;
@@ -29,6 +34,7 @@ fn main() {
     match args.day {
         1 => day1::run(&datapath),
         2 => day2::run(&datapath, args.part),
+        3 => day3::run(&datapath),
         _ => println!("Day {} not yet implemented.", args.day),
     }
 }
