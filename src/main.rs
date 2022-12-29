@@ -34,7 +34,7 @@ fn main() {
     match args.day {
         1 => day1::run(&datapath),
         2 => day2::run(&datapath, args.part),
-        3 => day3::run(&datapath),
+        3 => day3::run(&datapath, args.part),
         _ => println!("Day {} not yet implemented.", args.day),
     }
 }
