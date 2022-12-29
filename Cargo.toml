@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 itertools = "0.10.1"                                 # itertools utils
 clap = { version = "4.0.32", features = ["derive"] } # CLI arg parse
+range-set = "0.0.9"

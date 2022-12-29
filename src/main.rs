@@ -5,6 +5,7 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 use clap::Parser;
 use std::env;
@@ -35,6 +36,7 @@ fn main() {
         1 => day1::run(&datapath),
         2 => day2::run(&datapath, args.part),
         3 => day3::run(&datapath, args.part),
+        4 => day4::run(&datapath, args.part),
         _ => println!("Day {} not yet implemented.", args.day),
     }
 }
