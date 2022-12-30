@@ -100,12 +100,25 @@ pub fn run(datapath: &Path, part: u8) {
 
     print_stacks(&stacks);
 
-    actions.into_iter().for_each(|action| {
-        let n = stacks[action.from_col].len();
-        let split_at = n.saturating_sub(action.quantity);
-        let head = stacks[action.from_col].split_off(split_at);
-        stacks[action.to_col].extend(head.into_iter().rev());
-    });
+    match part {
+        1 => {
+            actions.into_iter().for_each(|action| {
+                let n = stacks[action.from_col].len();
+                let split_at = n.saturating_sub(action.quantity);
+                let head = stacks[action.from_col].split_off(split_at);
+                stacks[action.to_col].extend(head.into_iter().rev());
+            });
+        }
+        2 => {
+            actions.into_iter().for_each(|action| {
+                let n = stacks[action.from_col].len();
+                let split_at = n.saturating_sub(action.quantity);
+                let head = stacks[action.from_col].split_off(split_at);
+                stacks[action.to_col].extend(head);
+            });
+        }
+        _ => panic!("Part {part} is not defined."),
+    };
 
     let result = stacks
         .into_iter()
