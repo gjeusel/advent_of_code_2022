@@ -1,4 +1,6 @@
 target
 
 # put the aoc input files here
-data/*
+**/data/*
+
+.DS_Store

@@ -1,12 +1,12 @@
-// ________ AOC - Advent Of Code 2023 ________
+// ________ AOC - Advent Of Code 2022 ________
 //
-// https://adventofcode.com/2023
+// https://adventofcode.com/2022
 
 mod day1;
-// mod day2;
-// mod day3;
-// mod day4;
-// mod day5;
+mod day2;
+mod day3;
+mod day4;
+mod day5;
 
 use clap::Parser;
 use std::env;
@@ -35,10 +35,10 @@ fn main() {
 
     match args.day {
         1 => day1::run(&datapath),
-        // 2 => day2::run(&datapath, args.part),
-        // 3 => day3::run(&datapath, args.part),
-        // 4 => day4::run(&datapath, args.part),
-        // 5 => day5::run(&datapath, args.part),
+        2 => day2::run(&datapath, args.part),
+        3 => day3::run(&datapath, args.part),
+        4 => day4::run(&datapath, args.part),
+        5 => day5::run(&datapath, args.part),
         _ => println!("Day {} not yet implemented.", args.day),
     }
 }
